@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+    <script src="materialize/js/materialize.min.js"></script>
+
+    <script src="core.js"></script>
+    <script src="exLog.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="materialize/Icon/material.css" type="text/css">
+    <title>設定 - 時報ロイドK</title>
+</head>
+
+
+
+
+<body style="background-color:rgb(28, 28, 32); color:white;">
+
+    <!-- 上部ナビゲータ -->
+    <div class="navbar-fixed">
+        <nav class="nav-title row" style="background-color:rgb(40, 40, 40)">
+            <div class="col s8" style="padding-left: 16px;">
+                <sw-lang>
+                    <span style="font-size:large">%{title}</span>
+                </sw-lang>
+            </div>
+
+            <div class="col s2 waves-effect waves-green center" onclick="pageChange('info')"><i class="material-icons">info</i>
+            </div>
+
+            <div class="col s2 waves-effect waves-green center" onclick="saveCfg()"><i class="material-icons">save</i>
+            </div>
+        </nav>
+    </div>
+    <hr />
+
+    <div id="rootpage">
+        <!-- 最初の選択画面 -->
+        <div id="page-index">
+            <div class="m center">
+
+                <sw-lang><label>%{top-text}</label></sw-lang>
+
+                <hr />
+
+                <label for="w_exact">
+        <div class="p row waves-effect waves-light">
+          <div class="s9 col left">
+            <h6>Battery Save mode</h6>
+            <sw-lang>%{msExact}</sw-lang>
+          </div>
+          <div class="s3 col switch">
+            <label>
+              <input type="checkbox" id="w_exact">
+              <span class="lever"></span>
+            </label>
+            </div>
+        </div>
+        </label>
+
+
+
+        <label for="w_headphone">
+        <div class="p row waves-effect waves-light">
+          <div class="s9 col left">
+            <h6>Headphone mode</h6>
+            <sw-lang>%{msHeadphone}</sw-lang>
+          </div>
+          <div class="s3 col switch">
+            <label>
+              <input type="checkbox" id="w_headphone">
+              <span class="lever"></span>
+            </label>
+    </div>
+    </div>
+    </label>
+
+
+    <hr />
+
+
+    <div class="p">
+        <div class="left">
+            <h6>Comming Time</h6>
+            <label><sw-lang>%{msCommingTime}</sw-lang></label>
+        </div>
+        <p class="range-field">
+            <input type="range" id="w_advance_min" min="1" max="59">
+        </p>
+    </div>
+
+
+
+    <div class="p">
+        <div class="left">
+            <h6>Voice Volume</h6>
+            <label><sw-lang>%{msVoiceVolume}</sw-lang></label>
+        </div>
+        <p class="range-field">
+            <input type="range" id="w_vcvol" min="0" max="10">
+        </p>
+    </div>
+
+
+    <div class="p">
+        <div class="left">
+            <h6>SE Volume</h6>
+            <label><sw-lang>%{msSeVolume}</sw-lang></label>
+        </div>
+        <p class="range-field">
+            <input type="range" id="w_sevol" min="0" max="10">
+        </p>
+    </div>
+
+
+
+    <div class="p">
+        <sw-lang>
+            <div class="left">
+                <h6>Select Voice</h6>
+                <label>%{msSelectVoice}</label>
+            </div>
+            <form id="w_voice">
+                <p>
+                    <label>
+                <input name="cv" type="radio" value="akane" id="chk_akane" />
+                <span>%{msAkane}</span>
+              </label>
+                </p>
+                <p>
+                    <label>
+                <input name="cv" type="radio" value="aoi" id="chk_aoi" />
+                <span>%{msAoi}</span>
+              </label>
+                </p>
+            </form>
+        </sw-lang>
+    </div>
+
+
+
+    <div class="p input-field blue-grey darken-1">
+        <div class="left row">
+            <div class="col s7">
+                <h6>Output Audio Type</h6>
+            </div>
+            <div class="col s5">
+                <sw-lang style="font-size: x-small;">%{nowAudioType}</sw-lang>
+                <p id="nowAudioType"></p>
+            </div>
+
+        </div>
+        <select id="w_audioType">
+          <option value="" disabled selected>AudioType</option>
+          <option value="0x0">Voice call</option>
+          <option value="0x1">System</option>
+          <option value="0x2">Ring</option>
+          <option value="0x3">Music</option>
+          <option value="0x4">Alarm</option>
+          <option value="0x5">Notification</option>
+          <option value="0x6">Bluetooth SCO</option>
+          <option value="0x7">System (enforced)</option>
+          <option value="0x8">DTMF</option>
+          <option value="0x9">Text-To-Speech</option>
+          <option value="0xa">Accessibility (Android 8+)</option>
+        </select>
+    </div>
+
+    <div class="center">
+        <br /><br />
+    </div>
+
+    </div>
+    </div>
+
+
+    <!-- Create の インデックス -->
+    <div id="page-info" class="m">
+        <sw-lang>
+            <h4>
+                %{about}
+            </h4>
+            <div class="m">
+                %{about_this}
+            </div>
+            <div class="m">
+                %{about_notice}
+            </div>
+
+            <hr>
+
+            <div class="m p center">
+                <a href="http://mydevelop.tyabo.com/Automate/?from=Automate&pj=aut.lighfy.JihoRoid">[フロー作者のサイトに飛ぶ]</a>
+            </div>
+
+            <div class="row center" onclick="pageChange('index')">
+                <div class="col s12 m p waves-effect waves-teal">
+                    <h5>%{back}</h5>
+                </div>
+            </div>
+        </sw-lang>
+    </div>
+
+
+    <!-- Create の インデックス -->
+    <div id="page-???" class="m">
+
+    </div>
+
+
+    </div>
+
+
+
+
+
+    <Hr>
+    <div id="log" style="background-color: rgb(0, 0, 0); overflow-y:scroll; word-wrap: break-word; height: 130px; padding: 3px; border: white solid 1px; margin:8px;"></div>
+    <!-- 重要要素 テキストのコピーを担う -->
+    <div id="textCopySlient" style="position:fixed;top: 0px;color: rgba(0, 0, 0,0);height: 0px; width: 0px;"></div>
+
+
+
+
+
+    <!-- Language -->
+    <div class="center m">
+        Language
+        <div class="m switch">
+            <label>
+        English
+        <input id="lsw" type="checkbox" onchange="this.checked == true ? AsLanguage.Set('ja'):AsLanguage.Set('en')">
+        <span class="lever"></span>
+        日本語
+      </label>
+        </div>
+
+        <script>
+            var _ = language;
+            _ == "en" ? null : document.getElementById('lsw').setAttribute('checked', 'checked');
+        </script>
+    </div>
+
+    <hr>
+    <div class="center" style="color:rgba(255, 255, 255, 0.226);margin: 4px;">
+        Thanks for download! by lighfu
+    </div>
+</body>
+
+
+<script>
+    // Script init.
+    M.AutoInit();
+
+    window.onload = function() {
+        var elems = document.querySelectorAll("input[type=range]");
+        M.Range.init(elems);
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        //var instances = M.FormSelect.init(elems, options);
+    });
+
+
+    pageChange('index');
+    log.invisible(true);
+
+    let cfg = JSON.parse(decodeBU(queryGet("cfg")));
+    let adt = 0;
+
+    // console.log(cfg);
+
+    check('w_headphone', cfg['jiho.Headphone']);
+    check('w_exact', !cfg['jiho.exact']);
+
+    setValue('w_advance_min', cfg['jiho.time.advanceMin']);
+    setValue('w_vcvol', cfg['jiho.volume.voice']);
+    setValue('w_sevol', cfg['jiho.volume.se']);
+
+    setSelectVoice(cfg['jiho.voiceis']);
+
+    setAudioType(cfg['jiho.UseAudioType']);
+
+
+    document.getElementById('w_audioType').addEventListener("change", (e) => {
+        setAudioType(parseInt(document.getElementById('w_audioType').value, 16));
+    });
+
+
+    function saveCfg() {
+        cfg['jiho.Headphone'] = readCheck('w_headphone');
+        cfg['jiho.exact'] = !readCheck('w_exact') + 0;
+        cfg['jiho.time.advanceMin'] = parseInt(readValue('w_advance_min'), 10);
+        cfg['jiho.volume.voice'] = parseInt(readValue('w_vcvol'), 10);
+        cfg['jiho.volume.se'] = parseInt(readValue('w_sevol'), 10);
+        cfg['jiho.voiceis'] = readSelectVoice();
+        cfg['jiho.UseAudioType'] = adt;
+        let scfg = JSON.stringify(cfg);
+        scfg = btoa(encodeURIComponent(scfg));
+
+        // console.log(cfg);
+        // console.log(scfg);
+        location.href = 'http://localhost/ok?r=' + scfg;
+    }
+
+    // カスタム関数　ここから先自由
+
+    function decodeBU(text) {
+        return decodeURIComponent(atob(text).split('+').join(' '));
+    }
+
+    function check(id, bool) {
+        const d = document.getElementById(id);
+        if (bool == false) {
+            d.checked = false;
+            d.value = false;
+            d.removeAttribute('checked');
+        }
+
+        if (bool == true) {
+            d.checked = true;
+            d.value = true;
+            d.setAttribute('checked', 'checked');
+        }
+    }
+
+    function readCheck(id) {
+        const d = document.getElementById(id);
+        // return d.hasAttribute('checked') || d.checked || d.value;
+        return d.checked;
+    }
+
+    function setValue(id, value) {
+        const d = document.getElementById(id);
+        d.value = value;
+    }
+
+    function readValue(id) {
+        const d = document.getElementById(id);
+        return d.value;
+    }
+
+    function setSelectVoice(vc) {
+        if (vc == "akane") {
+            check('chk_akane', true);
+            check('chk_aoi', false);
+        }
+        if (vc == "aoi") {
+            check('chk_akane', false);
+            check('chk_aoi', true);
+        }
+    }
+
+    function readSelectVoice() {
+        return readCheck('chk_akane') == true ? "akane" : "aoi";
+
+    }
+
+    function setAudioType(type) {
+        adt = type;
+        document.getElementById('nowAudioType').textContent = AudioTypeIDs(type);
+        document.getElementById('w_audioType').value = AudioTypeIDs(type);
+    }
+
+    function AudioTypeIDs(id) {
+        return {
+            0: "Voice call",
+            1: "System",
+            2: "Ring",
+            3: "Music",
+            4: "Alarm",
+            5: "Notification",
+            6: "Bluetooth SCO",
+            7: "System (enforced)",
+            8: "DTMF",
+            9: "Text-To-Speech",
+            10: "Accessibility (Android 8+)"
+        }[id];
+    }
+
+    function AudioTypeNames(type) {
+        return {
+            "Voice call": 0,
+            "System": 1,
+            "Ring": 2,
+            "Music": 3,
+            "Alarm": 4,
+            "Notification": 5,
+            "Bluetooth SCO": 6,
+            "System (enforced)": 7,
+            "DTMF": 8,
+            "Text-To-Speech": 9,
+            "Accessibility (Android 8+)": 10
+        }[type];
+    }
+</script>
+
+
+
+</html>

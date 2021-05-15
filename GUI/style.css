@@ -1,0 +1,94 @@
+.m {
+    margin: 16px;
+}
+
+.p {
+    padding: 16px;
+}
+
+html {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-family: Monospace;
+}
+
+hr {
+    border: rgb(114, 114, 114) groove 1px;
+    border-bottom: hidden;
+    border-right: hidden;
+    border-left: hidden;
+    margin: 16px;
+}
+
+h6 {
+    color: white;
+    text-align: left;
+    font-family: Monospace;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #8180ff5e;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #3d9bff;
+}
+
+input[type=range] {
+    /* fix for FF unable to apply focus style bug  */
+    border: 1px solid rgba(255, 255, 255, 0);
+    /*required for proper track sizing in FF*/
+}
+
+input[type=range]+.thumb .value {
+    display: block;
+    width: 30px;
+    text-align: center;
+    color: #3d9bff;
+    font-size: 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 3px;
+    background: #5f5f5f;
+    border: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    border: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: #3d9bff;
+    -webkit-transition: -webkit-box-shadow .3s;
+    transition: -webkit-box-shadow .3s;
+    transition: box-shadow .3s;
+    transition: box-shadow .3s, -webkit-box-shadow .3s;
+    -webkit-appearance: none;
+    background-color: #3d9bff;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    margin: -5px 0 0 0;
+}
+
+.vcenter {
+    vertical-align: middle;
+}
+
+.cell {
+    display: table-cell;
+}
+
+.border {
+    border: red 1px solid;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
