@@ -1,5 +1,6 @@
 {
   "future.version":"1.0-d20210515",
   "support.flow.version":"1",
-  "description":"時報ロイドK の初期リリースバージョンです。\nこのファイルをダウンロードして このフローを動作できます。\n\nダウンロードありがとう！(*‘ω‘ *)"
+  "description":"時報ロイドK の初期リリースバージョンです。\nこのファイルをダウンロードして このフローを動作できます。\n\nダウンロードありがとう！(*‘ω‘ *)",
+  "link":"https://github.com/lighfu/Automate-JihoRoid/archive/refs/tags/v1.0.zip"
 }
